@@ -29,11 +29,3 @@ class Network:
             outputs_d.append(output_d)
             i += 1
         return output, outputs, outputs_d
-
-    def activate_before_layer(self, data, layer_num):
-        output = data
-        i = 0
-        while i <= layer_num:
-            output = self.layers[i].activate_cpu(output)
-            i += 1
-        return output
