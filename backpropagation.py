@@ -1,23 +1,5 @@
 import numpy as np
 
-def testing2(net, data, labels):
-    output = net.activate_cpu(data)
-    answer = output.argmax(1)
-    percentage = (answer == labels).sum() / float(data.shape[0])  * 100
-    labels = unzip(labels, 3)
-    error = ((output - labels)**2).sum()
-    print error
-    return percentage
-
-def unzip(value, class_num):
-    length = len(value)
-    unzip_form = np.zeros((length, class_num))
-    i = 0
-    for row in value:
-        unzip_form[i, row] = 1
-        i += 1
-    return unzip_form
-
 class Backprop_params:
     def __init__(self, max_epochs, min_error, batch_size, momentum, zip, rates, weight_loss):
         self.max_epochs = max_epochs
@@ -27,15 +9,6 @@ class Backprop_params:
         self.rates = rates
         self.weight_loss = weight_loss
         self.min_error = min_error
-
-    # def __init__(self, config):
-    #     self.max_epochs = config['training']['max_epochs']
-    #     # self.rate = config['training']['rate']
-    #     self.batch_size = config['training']['batch_size']
-    #     self.momentum = config['training']['momentum']
-    #     self.weight_loss = config['training']['weight_loss']
-    #     self.zip = config['data']['zip']
-    #     self.rates = config['training']['rates']
 
 class Backpropagation:
 
