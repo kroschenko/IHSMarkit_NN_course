@@ -60,14 +60,6 @@ class Linear(Function):
     def applyD(self, x):
         return np.ones(x.shape)
 
-class Harrington(Function):
-
-    def apply(self, x):
-        return np.exp(-np.exp(-x))
-
-    def applyD(self, x):
-        return np.exp(-(x + np.exp(-x)))
-
 def get_activate_function(str_act_func):
     if str_act_func == 'logistic':
         return Logistic()
@@ -77,8 +69,6 @@ def get_activate_function(str_act_func):
         return Tanh()
     elif str_act_func == 'relu':
         return ReLU()
-    elif str_act_func == 'harrington':
-        return Harrington()
     elif str_act_func == 'linear':
         return Linear()
     elif str_act_func == 'tanh_le':
