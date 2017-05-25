@@ -63,7 +63,7 @@ from sklearn import metrics
 report = metrics.classification_report(gold_labels, classes, target_names=class_names)
 print(report)
 """
-val_acc: 0.8810
+val_acc: 0.8929
              precision    recall  f1-score   support
 
          cp       0.97      0.95      0.96        41
@@ -71,9 +71,10 @@ val_acc: 0.8810
         imL       0.00      0.00      0.00         1
         imS       0.00      0.00      0.00         1
         imU       0.83      0.62      0.71         8
-         om       1.00      0.80      0.89         5
-        omL       1.00      0.67      0.80         3
-         pp       0.67      0.91      0.77        11
+         om       1.00      1.00      1.00         5
+        omL       1.00      1.00      1.00         3
+         pp       0.77      0.91      0.83        11
 
-avg / total       0.87      0.87      0.86        84
+avg / total       0.88      0.89      0.88        84
+
 """
