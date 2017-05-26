@@ -40,9 +40,9 @@ class WidrowHoffNeuron:
 
 def plot(error_curve):
     fig, ax = plt.subplots()
-    ax.set_xlabel(u'Эпоха', fontsize=18)
-    ax.set_ylabel(u'Ошибка', fontsize=18)
-    ax.set_title(u'Результат обучения нейрона', fontsize=18)
+    ax.set_xlabel('Epoch number', fontsize=18)
+    ax.set_ylabel('Error', fontsize=18)
+    ax.set_title('Result of learning', fontsize=18)
     plt.plot([x for x in range(0, len(error_curve))], error_curve)
     plt.show()
 
