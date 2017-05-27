@@ -111,13 +111,13 @@ def drawROCCurve(net, data, labels):
 
 
 #загрузка данных из файла
-data = loadDataFromFile("Datasets/tic-tac-toe.data.txt")
+data = loadDataFromFile("../Datasets/tic-tac-toe.data.txt")
 #конфигурирование сети
 net = Network()
 layer_1 = FullyConnectedLayer(Logistic(), 9, 9)
-layer_3 = FullyConnectedLayer(Logistic(), 9, 1)
+layer_2 = FullyConnectedLayer(Logistic(), 9, 1)
 net.append_layer(layer_1)
-net.append_layer(layer_3)
+net.append_layer(layer_2)
 params = Backprop_params(500, 1e-5, 10, 0.9, False, [0.01, 0.01], 0)
 method = Backpropagation(params, net)
 train_data = data[0]
