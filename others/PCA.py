@@ -5,7 +5,6 @@ from sklearn.decomposition import PCA
 
 def prepareData():
     irises_dataset = datasets.load_iris()
-    print irises_dataset
     return irises_dataset['data'], irises_dataset['target']
 
 def __normalizing(data):
@@ -41,9 +40,9 @@ def visualise_data(data, targets):
 if __name__ == "__main__":
     irises_data, irises_target = prepareData()
     #irises_data = __normalizing(irises_data)
-    # pca = PCA(n_components=2)
-    # XPCAreduced = pca.fit_transform(irises_data)
-    # XPCAreduced = pca.fit_transform(np.transpose(irises_data))
-    irises_reduction = pca_method(irises_data)
-    # print irises_reduction
+    irises_reduction = pca_method(irises_data)    
     visualise_data(irises_reduction, irises_target)
+    
+    #pca = PCA(n_components=2)
+    #X_reduced = pca.fit_transform(irises_data)
+
