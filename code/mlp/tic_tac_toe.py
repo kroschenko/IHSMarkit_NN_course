@@ -111,7 +111,7 @@ def drawROCCurve(net, data, labels):
 
 
 #загрузка данных из файла
-data = loadDataFromFile("../Datasets/tic-tac-toe.data.txt")
+data = loadDataFromFile("../../Datasets/tic-tac-toe.data.txt")
 #конфигурирование сети
 net = Network()
 layer_1 = FullyConnectedLayer(Logistic(), 9, 9)
