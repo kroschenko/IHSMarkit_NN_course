@@ -1,8 +1,4 @@
-import numpy as np
-import layer
-import math
-import itertools as it
-import activate_functions
+import pickle
 
 class Network:
     def __init__(self):
@@ -29,3 +25,22 @@ class Network:
             outputs_d.append(output_d)
             i += 1
         return output, outputs, outputs_d
+
+    def activate_before_layer(self, data, layer_num):
+        output = data
+        i = 0
+        while i <= layer_num:
+            output = self.layers[i].activate(output)
+            i += 1
+        return output
+
+    @staticmethod
+    def save_network(net, path):
+        with open(path, 'wb') as f:
+            pickle.dump(net, f)
+
+    @staticmethod
+    def load_network(path):
+        with open(path, 'rd') as f:
+            net = pickle.load(f)
+        return net

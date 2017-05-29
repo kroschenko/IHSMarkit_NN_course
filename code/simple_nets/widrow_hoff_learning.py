@@ -40,9 +40,9 @@ class WidrowHoffNeuron:
 
 def plot(error_curve):
     fig, ax = plt.subplots()
-    ax.set_xlabel('Epoch number', fontsize=18)
-    ax.set_ylabel('Error', fontsize=18)
-    ax.set_title('Result of learning', fontsize=18)
+    ax.set_xlabel(u'Epochs', fontsize=18)
+    ax.set_ylabel(u'Error', fontsize=18)
+    ax.set_title(u'Result of neuron learning', fontsize=18)
     plt.plot([x for x in range(0, len(error_curve))], error_curve)
     plt.show()
 
@@ -54,6 +54,7 @@ if __name__ == "__main__":
     error_curve, epochs_count = neuron.train(samples, targets)
     test_samples = np.array([[2.3, 2.4], [2.6, 2.7]])
     neuron.test(samples)
+    print '--------------------------'
     neuron.test(test_samples)
     print 'Epochs count = ' + str(epochs_count)
     plot(error_curve)

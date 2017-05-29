@@ -74,7 +74,7 @@ def plot(neuron):
 if __name__ == "__main__":
     samples = np.array([[-1, -1], [-1, 1], [1, -1], [1, 1]])
     targets = np.array([-1, -1, -1, 1])
-    neuron = RosenblattNeuron(0.1)
+    neuron = RosenblattNeuron(0.01)
     neuron.test(samples)
     neuron.train(samples, targets)
     neuron.test(samples)

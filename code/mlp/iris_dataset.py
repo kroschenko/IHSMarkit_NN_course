@@ -1,10 +1,7 @@
-import numpy as np
 from network import Network
 from layer import FullyConnectedLayer
 from activate_functions import Logistic
-from activate_functions import Linear
-from backpropagation import Backpropagation
-from backpropagation import Backprop_params
+from backpropagation import *
 import matplotlib.pyplot as plt
 import sklearn.datasets as datasets
 from sklearn.model_selection import train_test_split
@@ -20,7 +17,7 @@ def plot(error_curve):
     plt.plot([x for x in range(0, len(error_curve))], error_curve)
     plt.show()
 
-def test(net, data, labels):
+def testing(net, data, labels):
     output = net.activate(data)
     answer = output.argmax(1)
     percentage = (answer == labels).sum() / float(data.shape[0])  * 100
@@ -40,9 +37,9 @@ train_labels = data_all[2]
 test_labels = data_all[3]
 
 error_curve = method.train(train_data, train_labels)
+print "Train efficiency: " +  str(testing(net, train_data, train_labels))
+print "Test efficiency: " + str(testing(net, test_data, test_labels))
 plot(error_curve)
-print test(net, train_data, train_labels)
-print test(net, test_data, test_labels)
 
 
 
