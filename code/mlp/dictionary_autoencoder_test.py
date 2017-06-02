@@ -15,7 +15,6 @@ def load_dictionary(path):
         _str = i.rstrip('\n').decode('utf-8')
         if not ('-' in _str) and len(_str) > 1:
             _dict.append(_str)
-        # print i.rstrip('\n')
     return _dict
 
 def get_ngrams():
@@ -44,8 +43,6 @@ def get_random_words(data, count):
 
 def search_for_similar_words(words, data, count):
     similar = []
-    # print words.shape
-    # print data.shape
     for word in words:
         similar.append(np.argsort(np.linalg.norm(data - word, axis=1))[0:count])
     return similar
@@ -67,37 +64,3 @@ if __name__ == "__main__":
         print '>' + word
         for s_word_index in similar_indexes:
             print _dict[s_word_index]
-
-
-
-    # print len(_dict)
-    # print data[]
-
-    # rnd_index = np.random.permutation(len(data))
-    # data = data[rnd_index]
-        #, labels[rnd_index]
-    # data = data[0:148252]
-    # for i in range(0, 10):
-    #     _str = _dict[random.randint(100, 50000)]
-    #     print _str
-
-
-
-
-    # net = Network.load_network('network.net')
-    # output = net.activate(data)
-
-
-    # np.save('network', net.layers[0].weights)
-    # np.save('tmp.dat', data)
-    #
-    # for word in _dict:
-    #     print word
-    #     for ngram in ngrams:
-    #         if ngram in word:
-
-
-
-
-
-
