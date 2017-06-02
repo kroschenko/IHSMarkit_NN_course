@@ -1,13 +1,10 @@
-__author__ = 'Alex'
-
 import numpy as np
 import random as rnd
 import math
 
-
 class KohonenMap:
 
-    def __init__(self, shape, dimension, rate0, sigma0, tau2):
+    def __init__(self, shape, dimension, rate0, sigma0, tau2): #rate0 = 0.1, sigma0 = 2., tau2 = 1000.
         self.weights = np.random.random((shape[0], shape[1], dimension))
         self.tau2 = tau2
         self.rate0 = rate0
@@ -15,7 +12,6 @@ class KohonenMap:
         self.sigma0 = sigma0
         self.sigma = sigma0
         self.shape = shape
-        # self.neurons_count = neurons_count
 
     def core(self, data, iterationsLimit, changeRate):
         samples_count = len(data)
@@ -44,7 +40,6 @@ class KohonenMap:
             index = self._define_win_neuron(sample)
             clustering.append(index[0] + index[1])
         return clustering
-            # print str(index) + ': (' + str(sample[0]) + ', ' + str(sample[1]) + ')'
 
     def _define_win_neuron(self, sample):
         dist = 1e6
@@ -56,10 +51,6 @@ class KohonenMap:
                     row = i
                     col = j
         return [row, col]
-
-        # win_neuron_index = np.linalg.norm(self.weights - sample).argmin()
-        # np.indices()
-        # return win_neuron_index
 
     def _topological_locality(self, index):
         distance = np.zeros((self.shape[0], self.shape[1]))
