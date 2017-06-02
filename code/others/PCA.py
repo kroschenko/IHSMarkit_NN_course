@@ -39,9 +39,6 @@ def visualise_data(data, targets):
 
 if __name__ == "__main__":
     irises_data, irises_target = prepareData()
-    #irises_data = __normalizing(irises_data)
     irises_reduction = pca_method(irises_data)    
     visualise_data(irises_reduction, irises_target)
-    
-    #pca = PCA(n_components=2)
-    #X_reduced = pca.fit_transform(irises_data)
+
