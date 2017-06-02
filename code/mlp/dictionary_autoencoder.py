@@ -14,15 +14,17 @@ def load_dictionary(path):
             _dict.append(_str)
     return _dict
 
-def get_learning_set():
-    _dict = load_dictionary('Datasets/dictionary.txt')
-    print len(_dict)
+def get_ngrams():
     alphabet = u"абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
     ngrams = []
     for i in range(0, len(alphabet)):
         for j in range(0, len(alphabet)):
             ngrams.append(alphabet[i] + alphabet[j])
-    print len(ngrams)
+    return ngrams
+
+def get_learning_set():
+    _dict = load_dictionary('Datasets/dictionary.txt')
+    ngrams = get_ngrams()
     data = np.zeros((len(_dict), len(ngrams)))
     for i in xrange(0, len(_dict)):
         for j in xrange(0, len(ngrams)):
@@ -31,20 +33,8 @@ def get_learning_set():
     return data
 
 if __name__ == "__main__":
-    _dict = load_dictionary('Datasets/dictionary.txt')
-    print len(_dict)
-    alphabet = u"абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-    ngrams = []
-    for i in range(0, len(alphabet)):
-        for j in range(0, len(alphabet)):
-            ngrams.append(alphabet[i] + alphabet[j])
-    print len(ngrams)
-    data = np.zeros((len(_dict), len(ngrams)))
-    for i in xrange(0, len(_dict)):
-        for j in xrange(0, len(ngrams)):
-            if ngrams[j] in _dict[i]:
-                data[i, j] += 1
-    # print data[]
+    data = get_learning_set()
+    
     net = Network()
     layer_1 = FullyConnectedLayer(Logistic(), 1089, 100)
     layer_2 = FullyConnectedLayer(Linear(), 100, 1089)
@@ -55,19 +45,10 @@ if __name__ == "__main__":
 
     rnd_index = np.random.permutation(len(data))
     data = data[rnd_index]
-        #, labels[rnd_index]
-    # data = data[0:148252]
 
-    error_curve = method.train(data, data)
+    method.train(data, data)
 
-    Network.save_network(net, 'nets/network.net')
-    # np.save('network', net.layers[0].weights)
-    # np.save('tmp.dat', data)
-    #
-    # for word in _dict:
-    #     print word
-    #     for ngram in ngrams:
-    #         if ngram in word:
+    Network.save_network(net, 'nets/network.net')    
 
 
 
