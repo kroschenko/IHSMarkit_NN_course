@@ -25,6 +25,11 @@ def pca_method(data):
     print "Reduced " + str(100 - reduce_info / full_info * 100) + " percent of information"
     return data.T
 
+def pca_method_sklearn(data):
+    pca = PCA(n_components=2)
+    XPCAreduced = pca.fit_transform(data)
+    return XPCAreduced
+
 def visualise_data(data, targets):
     for i in range(0, len(data)):
         if targets[i] == 0:
@@ -39,9 +44,5 @@ def visualise_data(data, targets):
 
 if __name__ == "__main__":
     irises_data, irises_target = prepareData()
-    #irises_data = __normalizing(irises_data)
     irises_reduction = pca_method(irises_data)    
     visualise_data(irises_reduction, irises_target)
-    
-    #pca = PCA(n_components=2)
-    #X_reduced = pca.fit_transform(irises_data)
