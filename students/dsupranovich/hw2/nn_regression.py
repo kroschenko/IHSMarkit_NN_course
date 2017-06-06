@@ -25,10 +25,17 @@ X = df[features]
 
 input_size = len(features)
 
-def nn_model():
+def nn1_model():
 	model = Sequential()
 	model.add(Dense(units=8, input_dim=input_size, activation='relu'))
 	model.add(Dense(units=4, activation='relu'))
+	model.add(Dense(units=1))
+	model.compile(loss='mean_absolute_error', optimizer='adam')
+	return model
+
+def nn2_model():
+	model = Sequential()
+	model.add(Dense(units=100, input_dim=input_size, activation='relu'))
 	model.add(Dense(units=1))
 	model.compile(loss='mean_absolute_error', optimizer='adam')
 	return model
@@ -51,7 +58,7 @@ seed = 444
 np.random.seed(seed)
 estimators = []
 estimators.append(('standardize', MinMaxScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=nn_model, epochs=256, batch_size=5, verbose=0)))
+estimators.append(('mlp', KerasRegressor(build_fn=nn2_model, epochs=256, batch_size=5, verbose=0)))
 pipeline = Pipeline(estimators)
 kfold = KFold(n_splits=10, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold, scoring=transformed_mae_scorer)
@@ -60,3 +67,15 @@ print("{} MAE".format(results.mean()))
 results = cross_val_score(pipeline, X, Y, cv=kfold, scoring=transformed_mse_scorer)
 print("")
 print("{} RMSE".format(np.sqrt(results.mean())))
+
+"""
+nn1
+13.0190450982923 MAE
+
+64.79967098406117 RMSE
+
+nn2
+12.966257017550802 MAE
+
+64.772277518476 RMSE
+"""
