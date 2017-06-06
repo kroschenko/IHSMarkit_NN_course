@@ -10,7 +10,13 @@ from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
 import warnings
+import tensorflow as tf
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+seed = 444
+np.random.seed(seed)
+tf.set_random_seed(seed)
 
 df = pd.read_csv("forestfires.csv", index_col=None)
 
@@ -54,11 +60,9 @@ def transformed_mse(y, y_pred):
 
 transformed_mse_scorer = make_scorer(transformed_mse)
 
-seed = 444
-np.random.seed(seed)
 estimators = []
 estimators.append(('standardize', MinMaxScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=nn2_model, epochs=256, batch_size=5, verbose=0)))
+estimators.append(('mlp', KerasRegressor(build_fn=nn2_model, epochs=100, batch_size=5, verbose=0)))
 pipeline = Pipeline(estimators)
 kfold = KFold(n_splits=10, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold, scoring=transformed_mae_scorer)
@@ -75,7 +79,7 @@ nn1
 64.79967098406117 RMSE
 
 nn2
-12.966257017550802 MAE
+12.946845400468987 MAE
 
-64.772277518476 RMSE
+64.78482275939393 RMSE
 """
