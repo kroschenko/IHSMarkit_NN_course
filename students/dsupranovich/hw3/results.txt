@@ -1,0 +1,7 @@
+nn1:
+	Test loss: 0.0304
+	Test accuracy: 0.9908
+
+nn2:
+	Test loss: 0.0205
+	Test accuracy: 0.9938
